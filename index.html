@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>ERICTERS — Welcome</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;900&display=swap" rel="stylesheet">
+<style>
+ :root{
+   --bg-1: #0a0a0b;
+   --accent-1: #ff2b2b;
+   --accent-2: #ff6db2;
+   --accent-3: #56a6ff;
+   --accent-4: #9b6bff;
+   --glass: rgba(255,255,255,0.03);
+   --card-bg: rgba(0,0,0,0.45);
+   --card-border: rgba(255,255,255,0.04);
+   --text-soft: rgba(255,255,255,0.75);
+   --blood-1: #7e0000;
+   --blood-2: #ff1f1f;
+ }
+
+ /* Reset */
+ *{box-sizing:border-box;margin:0;padding:0}
+ html,body{height:100%}
+ body{
+   font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+   background: radial-gradient(1200px 600px at 50% 40%, rgba(40,50,80,0.35), transparent 20%),
+                 linear-gradient(180deg,#070608 0%, #0b0b0b 35%, #060606 100%);
+   color:#fff;
+   -webkit-font-smoothing:antialiased;
+   -moz-osx-font-smoothing:grayscale;
+   overflow-x:hidden;
+ }
+
+ /* top header */
+ header.site-header{
+   position:fixed;left:0;right:0;top:0;height:72px;
+   display:flex;align-items:center;justify-content:space-between;
+   padding:16px 36px;
+   z-index:1000;
+   background:linear-gradient(180deg, rgba(0,0,0,0.38), rgba(0,0,0,0.15));
+   border-bottom:1px solid rgba(255,255,255,0.03);
+   backdrop-filter: blur(8px);
+ }
+ .brand{
+   font-weight:800; letter-spacing:0.03em;
+   color:var(--accent-1); font-size:1.1rem;
+ }
+
+ /* social icons replaced by simple text links */
+ .socials{
+   display:flex;gap:14px;align-items:center;
+   font-weight:600;
+   color:rgba(255,255,255,0.9);
+ }
+ .socials a{
+   text-decoration:none;
+   color:rgba(255,255,255,0.92);
+   padding:6px 10px;
+   border-radius:8px;
+   background: rgba(255,255,255,0.02);
+   border:1px solid rgba(255,255,255,0.02);
+   transition:transform 160ms ease, background 160ms ease, color 160ms ease;
+   font-size:0.95rem;
+ }
+ .socials a:focus,
+ .socials a:hover{
+   transform:translateY(-4px);
+   background: rgba(255,255,255,0.03);
+   color: #fff;
+ }
+
+ /* hero area */
+ .hero{
+   min-height:56vh;
+   display:flex;align-items:center;justify-content:center;
+   position:relative; padding:110px 32px 40px;
+   overflow:hidden;
+ }
+
+ /* decorative background images (from your uploaded assets) */
+ .hero .bg-left,
+ .hero .bg-right,
+ .hero .bg-center {
+   position:absolute; inset:auto; pointer-events:none; z-index:0;
+   opacity:0.95; mix-blend-mode:screen;
+ }
+ .hero .bg-left{
+   left:-6%; top:3%; width:38%;
+   background-image:url("/mnt/data/1000006511.jpg");
+   background-size:cover; background-position:center;
+   filter:blur(8px) saturate(120%);
+   transform:translateY(-6%) rotate(-6deg) scale(1.02);
+ }
+ .hero .bg-right{
+   right:-6%; top:2%; width:40%;
+   background-image:url("/mnt/data/1000006512.jpg");
+   background-size:cover; background-position:center;
+   filter:blur(14px) saturate(120%);
+   transform:translateY(-2%) rotate(6deg) scale(1.02);
+ }
+ .hero .bg-center{
+   left:50%; top:14%; width:55%; height:55%;
+   transform:translateX(-50%) scale(1.02);
+   background-image:url("/mnt/data/1000006513.jpg");
+   background-size:cover; background-position:center;
+   filter:blur(10px) saturate(120%);
+   opacity:0.75;
+   border-radius:18px;
+ }
+
+ /* main hero text block */
+ .hero .content{
+   position:relative; z-index:5; max-width:1200px; width:100%;
+   display:flex;gap:24px;align-items:center;justify-content:center;
+   flex-direction:column;
+ }
+ .eyebrow{ color:var(--text-soft); font-weight:600; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:8px}
+ .title{
+   font-weight:900; font-size:clamp(40px,6vw,96px);
+   line-height:0.95; color:#fff;
+   text-align:center;
+   text-shadow:
+     0 6px 30px rgba(0,0,0,0.6),
+     0 0 40px rgba(255,50,65,0.05);
+   mix-blend-mode:normal;
+   display:block;
+ }
+ .subtitle{
+   margin-top:10px; color:var(--text-soft); max-width:900px;
+   text-align:center; font-size:1.05rem; line-height:1.5;
+   text-shadow:0 2px 8px rgba(0,0,0,0.45);
+ }
+
+/* rainbow text for "Welcome to" */
+ .rainbow {
+   background: linear-gradient(90deg,
+     #ff2b2b, #ff6db2, #9b6bff, #56a6ff, #6effb5, #ffe16b, #ff2b2b);
+   background-size: 400% 400%;
+   -webkit-background-clip: text;
+   background-clip: text;
+   color: transparent;
+   animation: rainbowShift 6s linear infinite;
+   display:inline-block;
+ }
+ @keyframes rainbowShift {
+   0% { background-position: 0% 50%; }
+   50% { background-position: 100% 50%; }
+   100% { background-position: 0% 50%; }
+ }
+
+ /* ERICTERS dynamic random chars styling */
+ .dynamic-word {
+   display:inline-block;
+   letter-spacing:0.02em;
+ }
+/* per-character spans */
+ .dynamic-word .char {
+   display:inline-block;
+   transition: opacity 160ms ease, transform 160ms ease;
+   will-change: opacity, transform;
+   /* keep them looking neon-ish */
+   text-shadow: 0 6px 18px rgba(0,0,0,0.6);
+   font-weight:900;
+ }
+
+/* buttons row */
+ .hero-actions {
+   margin-top:20px;
+   display:inline-flex;
+   gap:14px;
+   align-items:center;
+   z-index:7;
+ }
+
+/* blood red buttons */
+ .btn-blood{
+   appearance:none;
+   border:0;
+   cursor:pointer;
+   padding:12px 20px;
+   border-radius:12px;
+   font-weight:800;
+   letter-spacing:0.06em;
+   color:#fff;
+   background: linear-gradient(180deg, var(--blood-2), var(--blood-1));
+   box-shadow:
+     0 10px 40px rgba(125,0,0,0.45),
+     0 2px 12px rgba(255,30,30,0.12) inset;
+   border: 1px solid rgba(255,0,20,0.12);
+   transform:translateY(0);
+   transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+   text-transform:uppercase;
+   font-size:0.95rem;
+ }
+ .btn-blood:hover{
+   transform:translateY(-6px) scale(1.02);
+   filter:brightness(1.06);
+   box-shadow:
+     0 20px 80px rgba(140,0,0,0.55),
+     0 2px 18px rgba(255,30,30,0.18) inset;
+ }
+
+/* small translucent inner card for text (the floating glass card) */
+ .feature-card{
+   position:relative;
+   padding:28px;
+   border-radius:16px;
+   min-height:320px;
+   display:flex;flex-direction:column;justify-content:flex-start;
+   background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.18));
+   border: 1px solid var(--card-border);
+   box-shadow: 0 6px 40px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+   backdrop-filter: blur(8px);
+   overflow:hidden;
+ }
+
+ /* glow strips behind each card (slanted colored plate) */
+ .feature-card::before{
+   content:""; position:absolute; left:-20%; top:-8%; width:140%; height:120%;
+   transform: rotate(-14deg) translateY(-8%);
+   border-radius:12px;
+   z-index:0;
+   filter: blur(36px) saturate(130%); opacity:0.95;
+   box-shadow: 0 40px 90px rgba(0,0,0,0.6);
+ }
+ .feature-card .card-body{ position:relative; z-index:5; color:#fff;}
+
+ .feature-title{
+   font-size:1.6rem; font-weight:800; margin-bottom:12px;
+   text-shadow: 0 6px 20px rgba(0,0,0,0.55);
+ }
+ .feature-desc{ color:rgba(255,255,255,0.85); line-height:1.5; font-weight:400; font-size:0.96rem }
+
+ /* individual color glows (four types) */
+ .c-red::before{
+   background: linear-gradient(90deg, rgba(255,70,70,0.95), rgba(255,0,60,0.8) 40%, rgba(255,100,130,0.08));
+ }
+ .c-pink::before{
+   background: linear-gradient(90deg, rgba(255,100,180,0.9), rgba(255,60,160,0.7) 40%, rgba(255,140,180,0.08));
+ }
+ .c-blue::before{
+   background: linear-gradient(90deg, rgba(70,160,255,0.92), rgba(80,110,255,0.7) 40%, rgba(120,160,255,0.06));
+ }
+ .c-violet::before{
+   background: linear-gradient(90deg, rgba(160,110,255,0.9), rgba(125,70,255,0.7) 40%, rgba(180,140,255,0.05));
+ }
+
+ .feature-card .glass{
+   margin-top:36px;
+   background:rgba(0,0,0,0.55);
+   border-radius:10px;
+   padding:18px;
+   border:1px solid rgba(255,255,255,0.02);
+   box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+ }
+
+/* subtle hover lift for desktop */
+ .feature-card:hover{ transform:translateY(-8px); transition:transform 200ms ease; }
+
+ /* footer stripe */
+ footer.site-footer{
+   padding:40px 28px; text-align:center; color:rgba(255,255,255,0.6); font-size:0.95rem;
+ }
+
+ /* RESPONSIVE */
+ @media (max-width:1200px){
+   .features{ grid-template-columns: repeat(2, 1fr); gap:22px; margin:28px auto 90px; max-width:980px; }
+   .feature-card{ min-height:260px }
+   .hero .bg-left{ display:block; opacity:0.55; left:-12%}
+   .hero .bg-right{ display:block; opacity:0.55; right:-12%}
+ }
+ @media (max-width:700px){
+   header.site-header{ padding:12px 18px; height:auto; gap:8px; align-items:center; flex-wrap:wrap; justify-content:space-between; }
+   .hero{ padding:120px 20px 20px; min-height:60vh; }
+   .hero .bg-left, .hero .bg-right{ display:none; }
+   .hero .bg-center{ left:50%; top:6%; width:92%; height:38%; transform:translateX(-50%); opacity:0.9; filter:blur(6px) saturate(120%); border-radius:12px; }
+   .title{ font-size:clamp(28px,8vw,42px); line-height:1 }
+   .subtitle{ font-size:0.95rem; padding:0 8px }
+   .features{ grid-template-columns: 1fr; gap:18px; padding:0 18px; max-width:720px; margin:28px auto 80px; }
+   .feature-card{ min-height:220px; padding:18px }
+   .feature-card .glass{ margin-top:18px }
+ }
+ @media (max-width:420px){
+   .title{ font-size:28px }
+   .site-header .brand{ font-size:1rem }
+   .socials a{ padding:6px 8px; font-size:0.9rem }
+ }
+
+ /* small animated shimmer on backgrounds */
+ @keyframes subtleShift {
+   0%{ transform: translateY(-2%) scale(1.02) }
+   50%{ transform: translateY(0%) scale(1.00) }
+   100%{ transform: translateY(-2%) scale(1.02) }
+ }
+ .hero .bg-center{ animation: subtleShift 10s ease-in-out infinite; }
+ .hero .bg-left{ animation: subtleShift 13s ease-in-out infinite; }
+ .hero .bg-right{ animation: subtleShift 12s ease-in-out infinite; }
+
+</style>
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="brand">ERICTERS</div>
+    <nav class="socials" aria-label="Social links">
+      <!-- replaced icons with text links -->
+      <a href="#" title="Discord" aria-label="Discord">Discord</a>
+      <a href="#" title="YouTube" aria-label="YouTube">YouTube</a>
+      <a href="#" title="Twitter" aria-label="Twitter">Twitter</a>
+      <a href="#" title="GitHub" aria-label="GitHub">GitHub</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <!-- decorative images (uploaded assets) -->
+      <div class="bg-left" aria-hidden="true"></div>
+      <div class="bg-right" aria-hidden="true"></div>
+      <div class="bg-center" aria-hidden="true"></div>
+
+      <div class="content">
+        <div class="eyebrow">Introducing</div>
+
+        <!-- updated title: "Welcome to" rainbow + dynamic ERICTERS (random chars) -->
+        <h1 id="hero-title" class="title" aria-live="polite">
+          <span class="title-underline">
+            <span class="rainbow" aria-hidden="true">Welcome to</span>
+            &nbsp;
+            <!-- dynamic word container -->
+            <span class="dynamic-word" id="dynamic-ericters" aria-label="ERICTERS">
+              <!-- characters will be injected by JS -->
+            </span>
+            &nbsp;Intelligence
+          </span>
+        </h1>
+
+        <p class="subtitle">A next-generation visual language and execution design — elegant, fast, and built for creators. ERICTERS blends modern UI with dramatic neon glow effects and responsive layout for desktop and mobile.</p>
+
+        <!-- buttons row -->
+        <div class="hero-actions" role="group" aria-label="Hero actions">
+          <button class="btn-blood" id="bypass-btn" type="button">BYPASS NOW</button>
+          <button class="btn-blood" id="store-btn" type="button">STORE</button>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="features" aria-label="Features">
+      <article class="feature-card c-red" aria-labelledby="f1">
+        <div class="card-body">
+          <h3 id="f1" class="feature-title">Unseen UI Experience</h3>
+          <div class="glass">
+            <p class="feature-desc">ERICTERS introduces a fully animated, next-gen user interface — sleek, intuitive, and unlike anything the community has seen. Focused on clarity and motion, each element breathes.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="feature-card c-pink" aria-labelledby="f2">
+        <div class="card-body">
+          <h3 id="f2" class="feature-title">First AI-Assisted Executor</h3>
+          <div class="glass">
+            <p class="feature-desc">Built-in assistance helps you write, fix, and optimize logic in realtime. It’s not just tools — it’s your creative partner for scripting and automation workflows.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="feature-card c-blue" aria-labelledby="f3">
+        <div class="card-body">
+          <h3 id="f3" class="feature-title">Extreme Performance</h3>
+          <div class="glass">
+            <p class="feature-desc">Powered by a modern execution core, ERICTERS delivers lightning-fast performance and minimal latency across devices — tuned for both power and efficiency.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="feature-card c-violet" aria-labelledby="f4">
+        <div class="card-body">
+          <h3 id="f4" class="feature-title">The Most Innovative</h3>
+          <div class="glass">
+            <p class="feature-desc">From instant UI transitions to integrated tooling and a dynamic HUB, ERICTERS is 
+ built to impress and to lead forward the experience for creators.</p>
+          </div>
+        </div>
+      </article>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div>&copy; <strong>ERICTERS</strong> — Built with neon gradients & glass UI.</div>
+  </footer>
+
+<script>
+/*
+  dynamic ERICTERS replacement:
+  - uses the characters from charset = "#@$!?"
+  - creates a span per character, then continuously randomizes each character
+    with a quick fade for smoothness. Loop is infinite.
+*/
+document.addEventListener('DOMContentLoaded', function () {
+  const container = document.getElementById('dynamic-ericters');
+  const base = 'ERICTERS'; // length & spacing to match original text
+  const charset = ['#', '@', '$', '!', '?'];
+  const chars = base.split('');
+
+  // create spans for each char (initially show original letters)
+  container.innerHTML = '';
+  const spans = chars.map((ch, i) => {
+    const s = document.createElement('span');
+    s.className = 'char';
+    s.textContent = ch;
+    s.setAttribute('aria-hidden', 'true');
+    // small delay property for staggered animation
+    s.style.transitionDelay = (i * 40) + 'ms';
+    container.appendChild(s);
+    return s;
+  });
+
+  // function: pick random char from charset
+  function pickRandom() {
+    return charset[Math.floor(Math.random() * charset.length)];
+  }
+
+  // continuous randomization loop:
+  // each step, choose a random index (or multiple) and fade -> change -> fade in.
+  // We'll occasionally vary speed and the number of characters changed for organic feel.
+  function step() {
+    // decide how many characters to update this tick (1..chars.length)
+    const updateCount = Math.max(1, Math.floor(Math.random() * Math.min(4, spans.length)) );
+    // pick random indices
+    const indices = [];
+    while (indices.length < updateCount) {
+      const idx = Math.floor(Math.random() * spans.length);
+      if (!indices.includes(idx)) indices.push(idx);
+    }
+
+    indices.forEach((i, idxInLoop) => {
+      const s = spans[i];
+      // fade out
+      s.style.opacity = '0';
+      s.style.transform = 'translateY(-6px) scale(0.98)';
+      // after short delay swap char, fade in
+      setTimeout(() => {
+        s.textContent = pickRandom();
+        s.style.opacity = '1';
+        s.style.transform = 'translateY(0) scale(1)';
+      }, 120 + (idxInLoop * 25));
+    });
+
+    // schedule next step with slight randomness
+    const nextDelay = 80 + Math.floor(Math.random() * 260);
+    setTimeout(step, nextDelay);
+  }
+
+  // small initial jitter, then start loop
+  setTimeout(step, 250);
+});
+</script>
+
+</body>
+</html>
