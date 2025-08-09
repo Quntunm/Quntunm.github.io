@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>ERICTERS — Welcome</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg-1: #0a0a0b;
+  --accent-1: #ff1f1f;
+  --blood-1: rgba(255,0,0,0.15);
+  --blood-2: rgba(255,0,0,0.25);
+  --blood-outline: rgba(255,0,0,0.65);
+  --card-border: rgba(255,0,0,0.08);
+  --text-soft: rgba(255,200,200,0.75);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0; 
+  padding: 0;
+}
+html, body {
+  height: 100%;
+}
+body {
+  font-family: "Inter", system-ui, sans-serif;
+  background: #050000;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* Fullscreen cube background */
+#background-canvas, #background-glow {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Glow pulse */
+@keyframes heroGlow {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 0.5; }
+}
+#background-glow {
+  background: radial-gradient(circle at center, rgba(255,0,0,0.2) 0%, transparent 70%);
+  animation: heroGlow 6s ease-in-out infinite;
+}
+
+header.site-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 36px;
+  background: linear-gradient(180deg, rgba(40,0,0,0.6), rgba(20,0,0,0.2));
+  border-bottom: 1px solid var(--card-border);
+  z-index: 1000;
+}
+.brand {
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  color: var(--accent-1);
+  font-size: 1.1rem;
+}
+.socials {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.socials a {
+  color: rgba(255,180,180,0.92);
+  background: rgba(60,0,0,0.2);
+  border: 1px solid rgba(255,0,0,0.2);
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+.socials a:hover {
+  background: rgba(120,0,0,0.35);
+}
+
+/* Hero section fullscreen */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 110px 32px 40px;
+  overflow: hidden;
+  flex-direction: column;
+  text-align: center;
+  z-index: 5;
+}
+
+.eyebrow {
+  color: var(--text-soft);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+.title {
+  font-weight: 900;
+  font-size: clamp(40px, 6vw, 96px);
+  line-height: 0.95;
+  color: #fff;
+  text-shadow: 0 6px 30px rgba(80,0,0,0.6), 0 0 40px rgba(255,0,0,0.2);
+  margin-bottom: 10px;
+}
+.subtitle {
+  max-width: 900px;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  margin-bottom: 24px;
+  background: linear-gradient(90deg, rgba(255,0,0,0.6), rgba(255,150,150,0.8), rgba(255,0,0,0.6));
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: glowMove 8s linear infinite;
+}
+@keyframes glowMove {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Rainbow tween for title */
+@keyframes rainbow-tween {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+.rainbow {
+  background: linear-gradient(270deg, #ff1f1f, #cc0000, #ff6666, #aa0000, #ff1f1f);
+  background-size: 600% 600%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow-tween 8s ease infinite;
+  display: inline-block;
+}
+
+/* Buttons */
+.hero-actions {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 12px;
+}
+.btn-blood {
+  background: var(--blood-1);
+  border: 2px solid var(--blood-outline);
+  backdrop-filter: blur(4px);
+  box-shadow: inset 0 0 18px rgba(255,0,0,0.25), 0 0 20px rgba(255,0,0,0.12);
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  border-radius: 12px;
+  padding: 12px 28px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  opacity: 0.9;
+}
+.btn-blood:hover {
+  background: var(--blood-2);
+  box-shadow: inset 0 0 28px rgba(255,0,0,0.35), 0 0 35px rgba(255,0,0,0.25);
+  opacity: 1;
+}
+.btn-blood.clicked {
+  transform: scale(1.08);
+  box-shadow: inset 0 0 28px rgba(255,0,0,0.5), 0 0 35px rgba(255,0,0,0.3);
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .hero {
+    padding: 120px 20px 20px;
+  }
+  .title {
+    font-size: 32px;
+  }
+  .hero-actions {
+    flex-direction: column;
+  }
+}
+</style>
+</head>
+<body>
+
+<canvas id="background-canvas"></canvas>
+<div id="background-glow"></div>
+
+<header class="site-header">
+  <div class="brand">ERICTERS</div>
+  <nav class="socials">
+    <a href="#">Discord</a>
+    <a href="#">YouTube</a>
+    <a href="#">Twitter</a>
+    <a href="#">GitHub</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="eyebrow">Introducing</div>
+    <h1 class="title">
+      <span class="rainbow">Welcome to</span>&nbsp;
+      <span id="dynamic-ericters"></span>&nbsp;.
+    </h1>
+    <p class="subtitle">You can now finally not do your boring Script keys...</p>
+    <div class="hero-actions">
+      <button class="btn-blood">BYPASS NOW</button>
+      <button class="btn-blood">STORE</button>
+    </div>
+  </section>
+</main>
+
+<script>
+// Dynamic ERICTERS animation
+const container = document.getElementById('dynamic-ericters');
+const baseText = 'ERICTERS';
+const charset = ['#', '@', '$', '!', '?'];
+const spans = [];
+baseText.split('').forEach(char => {
+  const span = document.createElement('span');
+  span.textContent = char;
+  spans.push(span);
+  container.appendChild(span);
+});
+(function animate() {
+  const idx = Math.floor(Math.random() * spans.length);
+  spans[idx].textContent = charset[Math.floor(Math.random() * charset.length)];
+  setTimeout(() => {
+    spans[idx].textContent = baseText[idx];
+  }, 150);
+  setTimeout(animate, 100);
+})();
+
+// Button click tween effect
+document.querySelectorAll('.btn-blood').forEach(btn => {
+  btn.addEventListener('click', () => {
+    btn.classList.add('clicked');
+    setTimeout(() => btn.classList.remove('clicked'), 2000);
+  });
+});
+
+// Cube background animation
+const canvas = document.getElementById('background-canvas');
+const ctx = canvas.getContext('2d');
+let cubes = [];
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+function createCubes() {
+  cubes = [];
+  for (let i = 0; i < 6; i++) {
+    cubes.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      size: 80 + Math.random() * 50,
+      speed: 0.2 + Math.random() * 0.3,
+      offset: Math.random() * 1000
+    });
+  }
+}
+createCubes();
+
+function drawCubes() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  cubes.forEach(cube => {
+    let time = Date.now() * 0.001 + cube.offset;
+    let x = cube.x + Math.sin(time * cube.speed) * 50;
+    let y = cube.y + Math.cos(time * cube.speed) * 50;
+
+    ctx.fillStyle = "rgba(255,0,0,0.12)";
+    ctx.strokeStyle = "rgba(255,0,0,0.3)";
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.rect(x, y, cube.size, cube.size);
+    ctx.fill();
+    ctx.stroke();
+  });
+  requestAnimationFrame(drawCubes);
+}
+drawCubes();
+</script>
+</body>
+  </html>
+  
